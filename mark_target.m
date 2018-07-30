@@ -53,7 +53,7 @@ top_right_j = j_target + (n_w - j_centre + 1) + frame_offset;
 frame_coordinates = zeros(2*(2*(frame_offset+1)+m_w) + 2*(2*(frame_offset+1)+n_w) - 4, 2);
 frame_coordinates_rotated = zeros(2*(2*(frame_offset+1)+m_w) + 2*(2*(frame_offset+1)+n_w) - 4, 2);
 
-frame_coordinates(1:(2*(frame_offset+1)+m_w), 1) = top_left_i : bottom_left_i;
+frame_coordinates(1:(2*(frame_offset+1)+m_w), 1) = (top_left_i : bottom_left_i)';  % Octave
 frame_coordinates(1:(2*(frame_offset+1)+m_w), 2) = j_target - j_centre - frame_offset;
 
 frame_coordinates((2*(frame_offset+1)+m_w)+1:(2*(frame_offset+1)+m_w)+(2*(frame_offset+1)+n_w)-1, 1) =  i_target + (m_w - i_centre + 1) + frame_offset;

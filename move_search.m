@@ -81,7 +81,7 @@ while(centre)
         %     text(search_path{tt}(1,2)+1, search_path{tt}(1,1)+1,['(',num2str(tt),'):(',num2str(search_path{tt}(1,2)),',',num2str(search_path{tt}(1,1)),')'],'color','b');
         end
         text(search_path{end}(1,2), search_path{end}(1,1),'o','color','r');
-        text(search_path{end}(1,2)+0.2, search_path{end}(1,1)+0.2,['End(',num2str(tt+1),'):(',num2str(search_path{end}(1,1)),',',num2str(search_path{end}(1,2)),')'],'color','b');
+        %??tt??text(search_path{end}(1,2)+0.2, search_path{end}(1,1)+0.2,['End(',num2str(tt+1),'):(',num2str(search_path{end}(1,1)),',',num2str(search_path{end}(1,2)),')'],'color','b');
         
         return
     end
@@ -167,7 +167,7 @@ for tt = 2:search_steps-1
 %     text(search_path{tt}(1,2)+1, search_path{tt}(1,1)+1,['(',num2str(tt),'):(',num2str(search_path{tt}(1,2)),',',num2str(search_path{tt}(1,1)),')'],'color','b');
 end
 text(search_path{end}(1,2), search_path{end}(1,1),'o','color','r');
-text(search_path{end}(1,2)+0.2, search_path{end}(1,1)+0.2,['End(',num2str(tt+1),'):(',num2str(search_path{end}(1,1)),',',num2str(search_path{end}(1,2)),')'],'color','b');
+%??tt??text(search_path{end}(1,2)+0.2, search_path{end}(1,1)+0.2,['End(',num2str(tt+1),'):(',num2str(search_path{end}(1,1)),',',num2str(search_path{end}(1,2)),')'],'color','b');
 
 
 
