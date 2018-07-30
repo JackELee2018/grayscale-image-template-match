@@ -1,0 +1,22 @@
+
+
+GaussianFilter1(Internet Version)
+GaussianFilter2---My improved one
+
+{GaussianFilter3 
+{imfilter(IPT)     the tow are the same in fact
+
+
+DownSample1(Internet version)---'nearest'
+DownSample2---My code--'biliner' and 'nearest'
+DownSample3--- My version of 'nearest'
+DownSample4--- My improved code form DownSample2, using cell-array data structure,
+more fast, except for 'bilinear-space_save' mode.
+downsample(Calib_toolbox)---maybe 'bicubic'
+
+
+imrotate2---My code
+
+imrotate(IPT)
+
+

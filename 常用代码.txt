@@ -1,0 +1,262 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Preparing for rotate_match %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ Sigle target detection.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[w, f_squr, f_gray, match_paras, f] = get_template1();
+
+match_paras.P = 4
+
+steps = get_steps(4);
+ 
+[w_top_cell, w_cell, match_info] = get_top_templates(w, 4, 45, match_paras);
+[w_top_cell, w_cell, match_info] = get_top_templates(w, 4, 9, match_paras);
+
+match_paras.first_step = 45
+match_paras.first_step = 9
+
+[target_num, I_match, J_match, theta_match, s_match, match_info, angle_match_accuracy] = rotate_match(f_squr, 4, match_paras, w_cell, w_top_cell, steps, 0.8, 0.8, 3, 3, 'minimum', 'on')
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ Multi-target detection.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+f_m = imread('Pic26_VD078SC_RGB_Bar_Ring_Black02_YUY2_15fps.bmp_MODIFED.jpg');
+f2 = rgb2gray(f_m);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+[w, f_squr, f_gray, match_paras, f] = get_template1();
+
+[w_top_cell, w_cell, match_paras] = get_top_templates(w, 4, 45, match_paras);
+
+steps = get_steps(4);
+
+match_paras.P = 4
+match_paras.first_step = 9
+
+[target_array, s_target, target_angle, target_num, im_cell] = top_match(f2, 4, w_cell, w_top_cell, 0.8, match_paras, 'on')
+
+[target_array2, s_target2, target_angle2, target_num2, im_cell2] = top_match2(f2, 4, w_cell, w_top_cell, 0.8, 0.8, match_paras, 'on')
+
+
+f_m = imread('Pic26_VD078SC_RGB_Bar_Ring_Black02_YUY2_15fps.bmp_MODIFED.jpg');
+f2 = rgb2gray(f_m);
+figure, imshow(f2, [ ]);
+
+f22 = DownSample4(f2, 2);
+w2 = DownSample4(w, 2);
+
+match_paras.P = 2
+
+[s2, target_num2, I2, J2, peak_values2, polarity, match_info] = calcu_similarity2(f22, w2, 'on', 0.7, match_paras);
+
+
+[target_array2, s_target2, target_angle2, target_num2, im_cell2] = top_match2(f2, 4, w_cell, w_top_cell, 0.8, 0.8, match_paras, 'on')
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+f_squr1 = DownSample4(f_squr, 1);
+w1 = DownSample4(w, 1);
+
+f_squr2 = DownSample4(f_squr, 2);
+w2 = DownSample4(w, 2);
+
+f_squr3 = DownSample4(f_squr, 3);
+w3 = DownSample4(w, 3);
+
+f_squr4 = DownSample4(f_squr, 4);
+w4 = DownSample4(w, 4);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+INFO:
+
+P = 0;
+
+[s, i, j] = calcu_similarity(f_squr, w);
+
+Function: calcu_similarity; time for calculating SAD, using time-save way.
+Elapsed time is 235.776901 seconds.
+There is/are 1 point/points matched.
+The matched point(s) and the corresponding peak-metric value(s) is: 
+(438, 620) 
+0
+Function: calcu_similarity; total elapsed time.
+Elapsed time is 236.222240 seconds.
+
+
+
+P = 1;
+
+[s1, i1, j1] = calcu_similarity(f_squr1, w1);
+
+Function: calcu_similarity; time for calculating SAD, using time-save way.
+Elapsed time is 22.906930 seconds.
+There is/are 1 point/points matched.
+The matched point(s) and the corresponding peak-metric value(s) is: 
+(219, 310) 
+216261
+Function: calcu_similarity; total elapsed time.
+Elapsed time is 23.086448 seconds.
+
+
+P = 2;
+
+[s2, i2, j2] = calcu_similarity(f_squr2, w2);
+
+Function: calcu_similarity; time for calculating SAD, using time-save way.
+Elapsed time is 1.625596 seconds.
+There is/are 1 point/points matched.
+The matched point(s) and the corresponding peak-metric value(s) is: 
+(109, 155) 
+58813
+Function: calcu_similarity; total elapsed time.
+Elapsed time is 1.807967 seconds.
+
+
+P = 3;
+
+[s3, i3, j3] = calcu_similarity(f_squr3, w3);
+
+Function: calcu_similarity; time for calculating SAD, using time-save way.
+Elapsed time is 0.140690 seconds.
+There is/are 1 point/points matched.
+The matched point(s) and the corresponding peak-metric value(s) is: 
+(55, 77) 
+19643
+Function: calcu_similarity; total elapsed time.
+Elapsed time is 0.323913 seconds.
+
+
+
+P = 4
+
+[s4, i4, j4] = calcu_similarity(f_squr4, w4);
+
+Function: calcu_similarity; time for calculating SAD, using time-save way.
+Elapsed time is 0.026832 seconds.
+There is/are 1 point/points matched.
+The matched point(s) and the corresponding peak-metric value(s) is: 
+(28, 39) 
+8655
+Function: calcu_similarity; total elapsed time.
+Elapsed time is 0.225477 seconds.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+[target_array2, s_target2, target_angle2, target_num2, im_cell2] = top_match2(f2, 4, w_cell, w_top_cell, 0.5, 0.5, match_paras, 'on')
+
+target_total =
+    14
+target_num =
+     3
+target_array2 = 
+    [1x2 double]    [1x2 double]    [1x2 double]
+s_target2 = 
+    [2.5132e+003]    [4.3089e+003]    [4.8491e+003]
+target_angle2 = 
+    [18]    [0]    [9]
+target_num2 =
+     3
+im_cell2 = 
+    [768x1024 double]    [384x512 double]    [192x256 double]    [96x128 double]    [48x64 double]
+
+>> for ii = 1:3
+target_array2{ii}
+end
+ans =
+    25    10
+ans =
+     9    48
+ans =
+    26    38
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+[w_top_cell_9, w_cell, match_paras] = get_top_templates(w, 4, 9, match_paras);
+[target_array2, s_target2, target_angle2, target_num2, im_cell2] = top_match2(f2, 4, w_cell, w_top_cell_9, 0.5, 0.5, match_paras, 'on')
+
+target_total =
+   107
+target_num =
+     3
+
+target_array2 = 
+    [1x2 double]    [1x2 double]    [1x2 double]
+s_target2 = 
+    [2.5132e+003]    [4.3089e+003]    [4.8491e+003]
+target_angle2 = 
+    [90]    [0]    [9]
+target_num2 =
+     3
+
+
+im_cell2 = 
+    [768x1024 double]    [384x512 double]    [192x256 double]    [96x128 double]    [48x64 double]
+
+
+ for ii = 1:3
+target_array2{ii}
+end
+ans =
+    25    10
+ans =
+     9    48
+ans =
+    26    38
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+>> whos s2 s4 s4_90
+  Name         Size              Bytes  Class     Attributes
+
+  s2         192x256            393216  double              
+  s4          48x64              24576  double              
+  s4_90       48x64              24576  double 
+
+
+ [i1, j1, sp1] = find(s2 == min(s2(:)))
+i1 =
+    36
+j1 =
+   191
+sp1 =
+     1
+
+
+[i2, j2, sp2] = find(s4 == min(s4(:)))
+i2 =
+     9
+j2 =
+    48
+sp2 =
+     1
+
+
+[i3, j3, sp3] = find(s4_90 == min(s4_90(:)))
+i3 =
+    25
+j3 =
+    10
+sp3 =
+     1
+
+
+Pick in the S-image:
+
+point3:
+
+26, 38
+8532
+
+
